@@ -1,0 +1,7 @@
+	
+-------------- Game Idea ----------------------------
+
+Work as a team to scoop resources from Planets (Like fuel scooping).
+	- Idea came from the fishing scene from Project Hail Mary
+
+You start in a system and must travel from planet to planet scooping up material from them. You then sell this material for profit which you can use to buy goods, upgrade tools such as better scooping tools to scoop more dangerous planets
