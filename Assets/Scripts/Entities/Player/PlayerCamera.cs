@@ -11,14 +11,18 @@ public class PlayerCamera : PlayerComponent
         get;
         private set;
     }
+
+    public CinemachineCamera VirtualCamera
+    {
+        get;
+        private set;
+    }
     
     [Header("Head Bob")]
     [SerializeField] private float _headBobFrequency = 0.05f;
     [SerializeField] private float _headBobAmplitude = 0.5f;
     [SerializeField] private float _headBobSpeed = 3.0f;
     [SerializeField] private float _headBobTransitionSpeed = 1.0f;
-
-    private CinemachineCamera _virtualCamera;
     
     private Vector3 _initialCameraPos;
     private float _headBobTimer = 0.0f;
@@ -31,14 +35,14 @@ public class PlayerCamera : PlayerComponent
     private void Awake()
     {
         Camera = GetComponentInChildren<Camera>();
-        _virtualCamera = GetComponentInChildren<CinemachineCamera>();
+        VirtualCamera = GetComponentInChildren<CinemachineCamera>();
         
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Start()
     {
-        _initialCameraPos = _virtualCamera.transform.localPosition;
+        _initialCameraPos = VirtualCamera.transform.localPosition;
     }
 
     public Vector3 GetForward()
@@ -56,7 +60,7 @@ public class PlayerCamera : PlayerComponent
         if (direction == Vector3.zero)
         {
             _headBobTimer = 0.0f;
-            _virtualCamera.transform.localPosition = Vector3.Lerp(_virtualCamera.transform.localPosition, _initialCameraPos, _headBobTransitionSpeed * Time.deltaTime);
+            VirtualCamera.transform.localPosition = Vector3.Lerp(VirtualCamera.transform.localPosition, _initialCameraPos, _headBobTransitionSpeed * Time.deltaTime);
             return;
         }
         
@@ -72,6 +76,6 @@ public class PlayerCamera : PlayerComponent
             cameraPos.z += offsetZ;
         }
         
-        _virtualCamera.transform.localPosition = Vector3.Lerp(_virtualCamera.transform.localPosition, cameraPos, _headBobTransitionSpeed * Time.deltaTime);
+        VirtualCamera.transform.localPosition = Vector3.Lerp(VirtualCamera.transform.localPosition, cameraPos, _headBobTransitionSpeed * Time.deltaTime);
     }
 }

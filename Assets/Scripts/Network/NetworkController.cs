@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class NetworkController : Singleton<NetworkController>
 {
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
+    }
+    
     public override void OnNetworkSpawn()
     {
         NetworkManager.OnClientConnectedCallback += OnClientConnected;

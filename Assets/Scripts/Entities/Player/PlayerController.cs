@@ -32,11 +32,13 @@ public class PlayerController : PlayerComponent
     [SerializeField] private InputActionReference _jumpAction;
     
     private Rigidbody _rigidbody;
+    private Animator _animator;
     private PlayerCamera _camera;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<Animator>();
         _camera = GetComponentInChildren<PlayerCamera>();
     }
 
@@ -73,8 +75,9 @@ public class PlayerController : PlayerComponent
             return;
         }
 
-        _grounded = IsGrounded();
+        _animator.SetFloat("Velocity", _rigidbody.linearVelocity.sqrMagnitude);
         
+        _grounded = IsGrounded();
         ProcessInput();
     }
 
