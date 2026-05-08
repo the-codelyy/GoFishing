@@ -34,6 +34,11 @@ public class PlayerModel : PlayerComponent
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y - excessYaw, transform.eulerAngles.z), _bodyRotateSpeed * Time.deltaTime);
         }
     }
+
+    public void SetModelDirection(Vector3 direction)
+    {
+        transform.rotation = Quaternion.LookRotation(direction);
+    }
     
     private void SetLayerRecursively(GameObject obj, int layer)
     {

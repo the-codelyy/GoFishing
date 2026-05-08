@@ -33,13 +33,17 @@ public class PlayerController : PlayerComponent
     
     private Rigidbody _rigidbody;
     private Animator _animator;
+    
     private PlayerCamera _camera;
-
+    private PlayerModel _model;
+    
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
+        
         _camera = GetComponentInChildren<PlayerCamera>();
+        _model = GetComponentInChildren<PlayerModel>();
     }
 
     private void Start()
@@ -111,6 +115,8 @@ public class PlayerController : PlayerComponent
     {
         Vector3 movement = direction * speed;
         _rigidbody.AddForce(movement, ForceMode.Force);
+        
+        _model.SetModelDirection(direction);
     }
 
     private bool IsGrounded()
