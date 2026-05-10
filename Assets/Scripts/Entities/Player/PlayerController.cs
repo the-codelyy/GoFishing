@@ -59,8 +59,10 @@ public class PlayerController : PlayerComponent
         _jumpAction.action.started += OnJumpAction;
     }
 
-    private void OnDestroy()
+    public override void OnDestroy()
     {
+        base.OnDestroy();
+        
         if (!IsOwner)
         {
             return;
@@ -90,8 +92,8 @@ public class PlayerController : PlayerComponent
         Vector3 input = _moveAction.action.ReadValue<Vector3>();
         if (input != Vector3.zero)
         {
-            Vector3 forward = _camera.GetForward();
-            Vector3 right = _camera.GetRight();
+            Vector3 forward = _camera.GetForwardPlane();
+            Vector3 right = _camera.GetRightPlane();
             
             Vector3 movement = (forward * input.z + right * input.x).normalized;
             float speed = State == MovementState.Walking ? _walkSpeed : _sprintSpeed;

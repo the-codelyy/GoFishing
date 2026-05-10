@@ -17,6 +17,14 @@ public class PlayerCamera : PlayerComponent
         get;
         private set;
     }
+
+    public Transform Transform
+    {
+        get
+        {
+            return Camera.transform;
+        }
+    }
     
     [Header("Head Bob")]
     [SerializeField] private float _headBobFrequency = 0.05f;
@@ -45,12 +53,12 @@ public class PlayerCamera : PlayerComponent
         _initialCameraPos = VirtualCamera.transform.localPosition;
     }
 
-    public Vector3 GetForward()
+    public Vector3 GetForwardPlane()
     {
         return Vector3.ProjectOnPlane(Camera.transform.forward, Vector3.up).normalized;
     }
 
-    public Vector3 GetRight()
+    public Vector3 GetRightPlane()
     {
         return Vector3.ProjectOnPlane(Camera.transform.right, Vector3.up).normalized;
     }
