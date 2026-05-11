@@ -10,7 +10,7 @@ public class PlayerInteractor : PlayerComponent
    public event Action<IInteractable> OnInteractUnhover;
    
    [SerializeField] private float _interactionRange;
-   private InteractableObject _interactable;
+   private Item _item;
 
    [Header("Input")] 
    [SerializeField] private InputActionReference _carryAction;
@@ -45,23 +45,23 @@ public class PlayerInteractor : PlayerComponent
       Color debugRayColor = Color.yellow;
       if (Physics.Raycast(cameraPos, cameraDirection, out hit, _interactionRange, 1 << 7))
       {
-         InteractableObject interactable = hit.collider.GetComponentInParent<InteractableObject>();
-         if (interactable != null && interactable !=  _interactable)
+         IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
+         if (interactable != null && interactable !=  _item)
          { 
             Debug.Log($"Hovering on Interactable '{interactable.GetType().Name}'");
             
-            _interactable = interactable;
+            _item = (Item)interactable;
             OnInteractHover?.Invoke(interactable);
          }
          
          debugRayColor = Color.red;
       }
-      else if (_interactable != null)
+      else if (_item != null)
       {
-         Debug.Log($"Unhovering on Interactable '{_interactable.GetType().Name}'");
+         Debug.Log($"Unhovering on Interactable '{_item.GetType().Name}'");
          
-         _interactable = null;
-         OnInteractUnhover?.Invoke(_interactable);
+         _item = null;
+         OnInteractUnhover?.Invoke(_item);
       }
       
       Debug.DrawRay(cameraPos, cameraDirection * _interactionRange, debugRayColor);
@@ -74,15 +74,15 @@ public class PlayerInteractor : PlayerComponent
 
    private void OnCarryAction(InputAction.CallbackContext context)
    {
-      if (_playerCarry.CarriedObject != null)
+      if (_playerCarry.Item != null)
       {
          _playerCarry.Drop();
          return;
       }
       
-      if (_interactable != null && _playerCarry.CarriedObject == null)
+      if (_item != null && _playerCarry.Item == null)
       {
-         _playerCarry.Carry(_interactable);
+         _playerCarry.Carry(_item);
       }
    }
 }

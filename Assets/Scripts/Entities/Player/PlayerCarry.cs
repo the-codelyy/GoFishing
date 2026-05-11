@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerCarry : PlayerComponent
 {
-    public InteractableObject CarriedObject
+    public Item Item
     {
         get;
         private set;
@@ -16,23 +16,29 @@ public class PlayerCarry : PlayerComponent
     
     private void LateUpdate()
     {
-        if (CarriedObject != null)
+        if (Item != null)
         {
-            CarriedObject.transform.position = _carryPoint.position;
+            Item.transform.position = _carryPoint.position;
         }
     }
 
-    public void Carry(InteractableObject interactable)
+    public void Carry(Item item)
     {
-        CarriedObject = interactable;
-        CarriedObject.GetComponent<Rigidbody>().isKinematic = true;
-        CarriedObject.TakeOwnershipServerRpc();
+        if (Item == null && !item.IsHeld.Value)
+        {
+            Item = item;
+            Item.GetComponent<Rigidbody>().useGravity = false;
+            Item.RequestPickupRpc();
+        }
     }
 
     public void Drop()
     {
-        CarriedObject.NetworkObject.RemoveOwnership();
-        CarriedObject.GetComponent<Rigidbody>().isKinematic = false;
-        CarriedObject = null;
+        if (Item != null && Item.IsHeld.Value)
+        {
+            Item.RequestDropRpc();
+            Item.GetComponent<Rigidbody>().useGravity = true;
+            Item = null;
+        }
     }
 }

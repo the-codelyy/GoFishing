@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 7844665306740648223}
   - component: {fileID: 3607998779225252184}
   - component: {fileID: 2503124426058296275}
-  - component: {fileID: 7852424740161748696}
+  - component: {fileID: 1022808002487548630}
   - component: {fileID: 1427688847663623045}
   m_Layer: 7
   m_Name: Container
@@ -274,8 +274,8 @@ Rigidbody:
   m_GameObject: {fileID: 5013094854154826005}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0.05
-  m_AngularDamping: 0.05
+  m_LinearDamping: 0.5
+  m_AngularDamping: 0.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -316,7 +316,7 @@ MonoBehaviour:
   DontDestroyWithOwner: 1
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
-  AllowOwnerToParent: 1
+  AllowOwnerToParent: 0
 --- !u!114 &2503124426058296275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +341,7 @@ MonoBehaviour:
   RotationMaxInterpolationTime: 0.1
   ScaleLerpSmoothing: 1
   ScaleMaxInterpolationTime: 0.1
-  AuthorityMode: 0
+  AuthorityMode: 1
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
@@ -363,7 +363,7 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &7852424740161748696
+--- !u!114 &1022808002487548630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -393,6 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Container
   ShowTopMostFoldoutHeaderGroup: 1
+  <Name>k__BackingField: 
   _matter: 0
 --- !u!1 &8469461671915303948
 GameObject:

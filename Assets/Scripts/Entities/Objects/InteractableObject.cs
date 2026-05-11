@@ -12,9 +12,9 @@ public abstract class InteractableObject : NetworkBehaviour, IInteractable
         return true;
     }
     
-    [ServerRpc(RequireOwnership = false)]
-    public void TakeOwnershipServerRpc(ServerRpcParams rpcParams = default)
+    [Rpc(SendTo.Server)]
+    public void TakeOwnershipRpc(ulong clientID)
     {
-        NetworkObject.ChangeOwnership(rpcParams.Receive.SenderClientId);
+        NetworkObject.ChangeOwnership(clientID);
     }
 }
