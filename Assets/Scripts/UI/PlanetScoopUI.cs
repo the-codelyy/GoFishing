@@ -11,16 +11,16 @@ public class PlanetScoopUI : MonoBehaviour
 
     private void Start()
     {
-        _planetScooper.OnScoopProgress += OnScoopProgress;
+        _planetScooper._progress.OnValueChanged += OnScoopProgress;
     }
     
     private void OnDestroy()
     {
-        _planetScooper.OnScoopProgress -= OnScoopProgress;
+        _planetScooper._progress.OnValueChanged -= OnScoopProgress;
     }
 
-    private void OnScoopProgress(Planet planet, float progress)
+    private void OnScoopProgress(float oldValue, float newValue)
     {
-        _progress.text = progress.ToString("F0") + "%";
+        _progress.text = newValue.ToString("F0") + "%";
     }
 }

@@ -20,14 +20,25 @@ public class NetworkController : Singleton<NetworkController>
         NetworkManager.OnClientConnectedCallback -= OnClientConnected;
         NetworkManager.OnClientDisconnectCallback -= OnClientDisconnected;
     }
-
-    [ServerRpc]
-    public void SpawnEntityServerRpc(NetworkObjectReference entityRef, Vector3 position, ServerRpcParams serverParams = default)
+    
+    [Rpc(SendTo.Server)]
+    public void SpawnEntityRpc(uint hash, Vector3 position, Quaternion rotation)
     {
-        if (entityRef.TryGet(out NetworkObject networkObj))
+        if (NetworkManager.NetworkConfig.Prefabs.NetworkPrefabOverrideLinks.TryGetValue(hash, out NetworkPrefab prefab))
         {
-            GameObject entity = Instantiate(networkObj.gameObject, position, Quaternion.identity);
-            entity.GetComponent<NetworkObject>().Spawn(true);
+            NetworkManager.SpawnManager.InstantiateAndSpawn(prefab.Prefab.GetComponent<NetworkObject>(), destroyWithScene: true, position: position, rotation: rotation);
+        }
+        else
+        {
+            Debug.LogError($"Failed to obtain network object from hash: {hash}", this);
+        }
+    }
+
+    public void DespawnEntity(GameObject entity)
+    {
+        if (entity.TryGetComponent(out NetworkObject networkObject))
+        {
+            networkObject.Despawn();
         }
     }
 

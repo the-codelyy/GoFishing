@@ -13,8 +13,8 @@ public class PlanetScooper : NetworkBehaviour
 
     public float Progress
     {
-        get;
-        private set;
+        get => _progress.Value;
+        private set => _progress.Value = value;
     }
 
     public bool IsScooping
@@ -30,9 +30,28 @@ public class PlanetScooper : NetworkBehaviour
     [SerializeField] private float _scoopSpeed = 1.0f;
     private Coroutine _scoopCoroutine;
 
-    private void Start()
+    [Space] 
+    [SerializeField] private GameObject _containerPrefab;
+    [SerializeField] private Transform _containerSpawnPoint;
+    
+    public NetworkVariable<float> _progress = new NetworkVariable<float>();
+    
+    public override void OnNetworkSpawn()
     {
-        BeginScoop(null);
+        base.OnNetworkSpawn();
+        if (IsHost)
+        {
+            BeginScoop(null);
+        }
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+        if (IsHost)
+        {
+            StopCoroutine(_scoopCoroutine);
+        }
     }
 
     public void BeginScoop(Planet planet)
@@ -55,9 +74,24 @@ public class PlanetScooper : NetworkBehaviour
             OnScoopProgress?.Invoke(Target, Progress);
             yield return null;
         }
+        
+        CompleteScooping();
+    }
 
+    private void CompleteScooping()
+    {
         Progress = 100.0f;
         IsScooping = false;
         OnScoopComplete?.Invoke(Target);
+
+        SpawnContainer();
+    }
+
+    private void SpawnContainer()
+    {
+        if (IsHost)
+        {
+            NetworkController.Instance.SpawnEntityRpc(_containerPrefab.GetComponent<NetworkObject>().PrefabIdHash, _containerSpawnPoint.position, Quaternion.identity);
+        }
     }
 }
