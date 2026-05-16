@@ -91,7 +91,7 @@ public class PlanetScooper : NetworkBehaviour
     {
         if (IsHost)
         {
-            NetworkController.Instance.SpawnEntityRpc(_containerPrefab.GetComponent<NetworkObject>().PrefabIdHash, _containerSpawnPoint.position, Quaternion.identity);
+            NetworkController.Instance.SpawnEntityRpc(_containerPrefab.GetPrefabHash(), _containerSpawnPoint.position, Quaternion.identity);
         }
     }
 }

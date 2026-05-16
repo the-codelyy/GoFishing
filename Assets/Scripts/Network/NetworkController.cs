@@ -3,10 +3,20 @@ using UnityEngine;
 
 public class NetworkController : Singleton<NetworkController>
 {
+    [SerializeField] private bool _autoStartHost;
+    
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        if (_autoStartHost)
+        {
+            NetworkManager.Singleton.StartHost();
+        }
     }
     
     public override void OnNetworkSpawn()
@@ -22,10 +32,10 @@ public class NetworkController : Singleton<NetworkController>
     }
     
     [Rpc(SendTo.Server)]
-    public void SpawnEntityRpc(uint hash, Vector3 position, Quaternion rotation)
+    public void SpawnEntityRpc(uint hash, Vector3 position, Quaternion rotation = default, Vector3 scale = default, RpcParams rpcParams = default)
     {
         if (NetworkManager.NetworkConfig.Prefabs.NetworkPrefabOverrideLinks.TryGetValue(hash, out NetworkPrefab prefab))
-        {
+        { 
             NetworkManager.SpawnManager.InstantiateAndSpawn(prefab.Prefab.GetComponent<NetworkObject>(), destroyWithScene: true, position: position, rotation: rotation);
         }
         else

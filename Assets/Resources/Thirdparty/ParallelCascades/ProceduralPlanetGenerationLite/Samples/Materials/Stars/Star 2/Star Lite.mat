@@ -56,15 +56,15 @@ Material:
     m_Ints: []
     m_Floats:
     - _Filtering_Detail: 1
-    - _Flow_Speed: 0.19797546
+    - _Flow_Speed: 0.04949059
     - _Fresnel_Power: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 2.7454774
-    - _Warp_Amount: 2.2283828
+    - _Scale: 3.5275955
+    - _Warp_Amount: 1.8916831
     m_Colors:
-    - _Color_Q: {r: 0.9880697, g: 0.94144094, b: 0.7530932, a: 1}
-    - _Color_R: {r: 0.9500465, g: 0.8802769, b: 0.5984565, a: 1}
-    - _Fresnel_Color: {r: 1, g: 0.8042764, b: 0.013689811, a: 1}
+    - _Color_Q: {r: 0.9759884, g: 0.6680577, b: 0.40423903, a: 1}
+    - _Color_R: {r: 0.97796416, g: 0.6348238, b: 0.34083942, a: 1}
+    - _Fresnel_Color: {r: 1, g: 0.46569267, b: 0.0079267025, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

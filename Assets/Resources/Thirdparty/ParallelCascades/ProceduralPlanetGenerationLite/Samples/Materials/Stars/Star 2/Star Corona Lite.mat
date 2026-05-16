@@ -50,7 +50,7 @@ Material:
     - _Fullscreen_StencilWriteMask: 255
     - _Glow_Intensity: 1
     m_Colors:
-    - _Corona_Color: {r: 1, g: 0.8042764, b: 0.013689811, a: 1}
-    - _Object_Position: {r: 0, g: 1.5, b: 0, a: 0}
+    - _Corona_Color: {r: 1, g: 0.46569267, b: 0.007926684, a: 1}
+    - _Object_Position: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

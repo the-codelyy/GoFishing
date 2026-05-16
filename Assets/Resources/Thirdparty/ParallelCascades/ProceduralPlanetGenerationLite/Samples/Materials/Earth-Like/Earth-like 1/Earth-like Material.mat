@@ -162,7 +162,7 @@ Material:
     - _Coastal_City_Density: 3600
     - _Coastal_City_Power: 30
     - _Coastal_City_Strength: 100
-    - _Continent_Scale: 1.860184
+    - _Continent_Scale: 0.9385407
     - _Cubemap_Face: 5
     - _Cubemap_Face_Resolution: 2048
     - _Cull: 2
@@ -170,9 +170,10 @@ Material:
     - _Darkness_Noise_Scale: 4
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _Detail_Level: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _Elevation_Scale: 0.60078293
+    - _Elevation_Scale: 0.66444516
     - _EnvironmentReflections: 1
     - _Float: 0
     - _Fresnel_Power: 10
@@ -184,7 +185,7 @@ Material:
     - _Heightmap_Cubemap_Offset: 0.2
     - _Heightmap_Cubemap_Strength: 20
     - _Ice_Caps_Blend: 20
-    - _Ice_Caps_Edge_Threshold: 0.31224018
+    - _Ice_Caps_Edge_Threshold: 0.3503778
     - _Ice_Caps_Height: 0.94
     - _Ice_Caps_Normal_Multiplier: 0.01
     - _Light_DayNight_Threshold: 1
@@ -198,7 +199,7 @@ Material:
     - _Normal_Strength: 0.11
     - _OCEAN_ENABLED: 1
     - _OcclusionStrength: 1
-    - _Ocean_Land_Threshold: 0.13468468
+    - _Ocean_Land_Threshold: 0.032992076
     - _Parallax: 0.005
     - _Planet_Radius_For_Cloud_Shadow: 1
     - _QueueControl: 0
@@ -236,7 +237,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Elevation_NoiseParams: {r: 8, g: 0.5, b: 2, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Fresnel_Color: {r: 0, g: 0.22525164, b: 0.42505035, a: 1}
+    - _Fresnel_Color: {r: 0, g: 0.39235595, b: 0.4584712, a: 1}
     - _Ice_Caps_Noise_Params: {r: 8, g: 0.5, b: 2, a: 6}
     - _Ice_Caps_Smoothstep: {r: 0.94, g: 1, b: 0, a: 0}
     - _Land_Color_Mix_Params: {r: 6, g: 0.5, b: 2, a: 2}
@@ -244,11 +245,11 @@ Material:
     - _Mountain_Peaks_Noise_Params: {r: 6, g: 0.7, b: 2, a: 100}
     - _Mountains_Shape_Smoothstep: {r: 0, g: 0.9, b: 0, a: 0}
     - _Night_Light_Color: {r: 2, g: 0.5671564, b: 0, a: 0}
-    - _Ocean_Color: {r: 0, g: 0.12335048, b: 0.23276262, a: 1}
+    - _Ocean_Color: {r: 0, g: 0.23562387, b: 0.27532843, a: 1}
     - _Ocean_Depth_Smoothstep: {r: -0.5, g: 1, b: 0, a: 0}
-    - _Randomization_Offset: {r: 395.92496, g: -366.29236, b: 127.19677, a: 0}
+    - _Randomization_Offset: {r: -171.78496, g: -228.33258, b: 108.489685, a: 0}
     - _Ridge_Mask_Smoothstep: {r: -0.4, g: 0.1, b: 0, a: 0}
-    - _Shallows_Color: {r: 0, g: 0.22525164, b: 0.42505035, a: 1}
+    - _Shallows_Color: {r: 0, g: 0.392356, b: 0.4584712, a: 1}
     - _Smoothness_Smoothstep: {r: 1, g: -1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
